@@ -1,4 +1,4 @@
-name: my-angular-app
+name: app
 containers:
   - name: nodejs
     image: 'covexo/quickstart-angular:latest'
@@ -7,14 +7,12 @@ containers:
       workDir: /app
       entryPoint: ng
     initScript: |-
-      mv  my-angular-app/* ./
-      rm -r my-angular-app/
       npm install
     env:
       NODE_ENV: dev
     persistentFolders:
       - name: source-code
-        localSubPath: ./
+        localSubPath: ./app
         containerPath: /app
     routes:
       - hostPrefix: ''
