@@ -1,0 +1,21 @@
+name: my-angular-app
+containers:
+  - name: nodejs
+    image: 'covexo/quickstart-angular:latest'
+    runtimeOptions:
+      cmd: serve --host 0.0.0.0 --disable-host-check
+      workDir: /app
+      entryPoint: ng
+    initScript: |-
+      mv  my-angular-app/* ./
+      rm -r my-angular-app/
+      npm install
+    env:
+      NODE_ENV: dev
+    persistentFolders:
+      - name: source-code
+        localSubPath: ./
+        containerPath: /app
+    routes:
+      - hostPrefix: ''
+        containerPort: 4200
